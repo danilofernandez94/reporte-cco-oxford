@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Informe general de pauta digital de Café Conquistadores, período 22/04/2026 al 31/07/2026." />
+  <title>Café Conquistadores | Informe general de pauta</title>
+  <style>
+    :root{
+      --ink:#111111;
+      --ink-2:#242321;
+      --paper:#f3eee5;
+      --paper-2:#fffaf2;
+      --line:#d8d0c4;
+      --muted:#6e6961;
+      --red:#e31b23;
+      --red-dark:#a70f16;
+      --orange:#ff9900;
+      --yellow:#fff200;
+      --green:#00ee1a;
+      --status-red:#ff0000;
+      --gray:#b8b8b8;
+      --pending:#ded9d0;
+      --white:#ffffff;
+      --radius:24px;
+      --shadow:0 18px 55px rgba(17,17,17,.10);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 14% -10%, rgba(227,27,35,.10), transparent 28rem),
+        var(--paper);
+      line-height:1.45;
+    }
+    a{color:inherit}
+    .container{width:min(1180px, calc(100% - 40px)); margin:auto}
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      background:rgba(243,238,229,.88);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(17,17,17,.08);
+    }
+    .topbar-inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.03em}
+    .diamond{width:28px;height:28px;background:var(--red);transform:rotate(45deg);border-radius:3px;flex:none}
+    .brand small{display:block;font-weight:700;letter-spacing:.12em;font-size:10px;color:var(--muted);text-transform:uppercase;margin-bottom:1px}
+    .brand strong{font-size:17px}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .period{font-size:13px;font-weight:750;color:var(--muted)}
+    .btn{
+      border:0;border-radius:999px;background:var(--ink);color:white;
+      padding:11px 17px;font-weight:800;cursor:pointer;font-size:13px;
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-1px);background:var(--red)}
+    .hero{
+      position:relative;overflow:hidden;background:var(--ink);color:white;
+      min-height:610px;display:flex;align-items:center;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:0;
+      background:
+        linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(17,17,17,.98) 43%, rgba(17,17,17,.45) 75%, rgba(17,17,17,.2) 100%),
+        repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(255,255,255,.015) 5px);
+    }
+    .hero:after{
+      content:""; position:absolute; width:440px;height:440px; border:80px solid var(--red);
+      transform:rotate(45deg); right:-290px; top:-250px; opacity:.9;
+    }
+    .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.12fr .88fr;align-items:end;gap:20px;padding:74px 0 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.15em;font-size:11px;font-weight:900;color:#f1d8d8}
+    .eyebrow:before{content:"";width:30px;height:4px;background:var(--red);border-radius:4px}
+    h1{font-size:clamp(50px,7vw,94px);line-height:.91;letter-spacing:-.065em;margin:22px 0 26px;max-width:820px}
+    .hero-lead{max-width:700px;font-size:clamp(18px,2vw,23px);line-height:1.38;color:#e9e5df;margin:0 0 34px}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:64px}
+    .chip{padding:10px 14px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;font-weight:800;color:#efeae3;background:rgba(255,255,255,.05)}
+    .people{align-self:end;justify-self:end;max-width:590px;width:100%;filter:drop-shadow(0 25px 35px rgba(0,0,0,.35));transform:translateY(8px)}
+    .hero-strip{position:absolute;bottom:0;left:0;right:0;height:10px;background:var(--red);z-index:4}
+    main{padding:66px 0 90px}
+    section{margin:0 0 72px}
+    .section-head{display:flex;justify-content:space-between;gap:32px;align-items:flex-end;margin-bottom:25px}
+    .section-kicker{text-transform:uppercase;letter-spacing:.15em;font-size:11px;font-weight:900;color:var(--red);margin-bottom:10px}
+    h2{font-size:clamp(34px,4vw,58px);line-height:1;letter-spacing:-.055em;margin:0;max-width:820px}
+    .section-desc{max-width:460px;color:var(--muted);font-size:15px;margin:0 0 4px}
+    .grid{display:grid;gap:18px}
+    .kpis{grid-template-columns:repeat(6,1fr)}
+    .card{background:rgba(255,250,242,.92);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .kpi{padding:23px 20px;min-height:160px;display:flex;flex-direction:column;justify-content:space-between}
+    .kpi .label{font-size:12px;line-height:1.25;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:850}
+    .kpi .value{font-size:clamp(30px,3.5vw,47px);font-weight:950;letter-spacing:-.055em;line-height:1}
+    .kpi .note{font-size:11px;color:var(--muted);line-height:1.35}
+    .kpi.red{background:var(--red);color:white;border-color:var(--red)}
+    .kpi.red .label,.kpi.red .note{color:rgba(255,255,255,.82)}
+    .method-note{margin-top:18px;background:#fff;border-left:7px solid var(--red);padding:18px 21px;border-radius:10px 18px 18px 10px;font-size:14px;box-shadow:0 8px 30px rgba(17,17,17,.06)}
+    .method-note strong{display:block;margin-bottom:3px}
+    .platforms{grid-template-columns:1fr 1fr}
+    .platform{padding:30px;position:relative;overflow:hidden}
+    .platform:after{content:"";position:absolute;width:160px;height:160px;border:38px solid rgba(227,27,35,.08);transform:rotate(45deg);right:-90px;top:-95px}
+    .platform-title{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:24px}
+    .platform-name{font-size:28px;font-weight:950;letter-spacing:-.045em}
+    .platform-badge{font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;padding:7px 10px;border-radius:999px;background:var(--ink);color:white}
+    .mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+    .mini{border-top:1px solid var(--line);padding-top:13px}
+    .mini .n{font-size:24px;font-weight:950;letter-spacing:-.04em}
+    .mini .t{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800;margin-top:3px}
+    .insight{padding:17px 18px;border-radius:16px;background:var(--ink);color:white;font-size:14px;line-height:1.45}
+    .insight b{color:#ffacb0}
+    .support-grid{grid-template-columns:1.15fr .85fr;margin-top:18px}
+    .support{padding:25px}
+    .support h3,.chart-card h3,.commercial-card h3{font-size:23px;letter-spacing:-.035em;margin:0 0 10px}
+    .support p{color:var(--muted);margin:0}
+    .support-stat{display:flex;align-items:end;gap:10px;margin-top:22px}
+    .support-stat strong{font-size:46px;line-height:.9;letter-spacing:-.055em}
+    .support-stat span{font-size:12px;font-weight:800;color:var(--muted);max-width:120px;text-transform:uppercase;letter-spacing:.07em}
+    .coffee-image{min-height:260px;background-image:linear-gradient(90deg,rgba(17,17,17,.12),rgba(17,17,17,.02)),url('assets/brand-coffee.webp');background-size:cover;background-position:center;border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .commercial-layout{grid-template-columns:1.18fr .82fr}
+    .chart-card,.commercial-card{padding:30px}
+    .chart-sub{color:var(--muted);font-size:13px;margin-bottom:25px}
+    .monthly-row{display:grid;grid-template-columns:80px 1fr 55px;gap:13px;align-items:center;margin:17px 0}
+    .month{font-weight:900;font-size:13px}
+    .stack{height:26px;border-radius:999px;background:#eee8df;display:flex;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(17,17,17,.06)}
+    .seg{height:100%;min-width:0;position:relative}
+    .seg:hover:after{content:attr(data-tip);position:absolute;bottom:34px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--ink);color:white;padding:6px 8px;border-radius:8px;font-size:10px;font-weight:800;z-index:5}
+    .pending{background:repeating-linear-gradient(135deg,#d5d0c7 0 7px,#ebe7df 7px 14px)}
+    .total{text-align:right;font-size:13px;font-weight:950}
+    .legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:25px;padding-top:20px;border-top:1px solid var(--line)}
+    .legend-item{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);font-weight:800}
+    .dot{width:12px;height:12px;border-radius:3px;border:1px solid rgba(0,0,0,.08)}
+    .commercial-card{background:var(--ink);color:white;border-color:var(--ink)}
+    .big-pending{font-size:88px;line-height:.9;font-weight:950;letter-spacing:-.075em;margin:28px 0 6px;color:white}
+    .big-pending-label{text-transform:uppercase;letter-spacing:.12em;color:#bbb4ab;font-size:11px;font-weight:900}
+    .commercial-card p{color:#d7d0c6}
+    .red-line{height:6px;border-radius:9px;background:var(--red);margin:25px 0}
+    .callout{font-size:21px;line-height:1.3;font-weight:900;letter-spacing:-.025em}
+    .callout em{font-style:normal;color:#ff858a}
+    .quality-layout{grid-template-columns:.72fr 1.28fr}
+    .donut-card{padding:30px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    .donut{width:260px;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--green) 0 3.64%, var(--yellow) 3.64% 42.42%, var(--orange) 42.42% 80%, var(--status-red) 80% 90.30%, var(--gray) 90.30% 100%);position:relative;box-shadow:0 14px 40px rgba(17,17,17,.13)}
+    .donut:after{content:"";position:absolute;inset:48px;background:var(--paper-2);border-radius:50%;box-shadow:inset 0 0 0 1px var(--line)}
+    .donut-center{position:absolute;inset:0;z-index:2;display:grid;place-content:center}
+    .donut-center strong{font-size:48px;line-height:.9;letter-spacing:-.055em}
+    .donut-center span{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:900;margin-top:8px}
+    .donut-note{font-size:14px;color:var(--muted);max-width:360px;margin-top:24px}
+    .quality-bars{padding:30px}
+    .quality-row{display:grid;grid-template-columns:190px 1fr 55px;gap:14px;align-items:center;margin:18px 0}
+    .quality-label{font-size:13px;font-weight:850}
+    .track{height:14px;border-radius:999px;background:#ece6dd;overflow:hidden}
+    .fill{height:100%;border-radius:999px}
+    .quality-value{text-align:right;font-weight:950}
+    .positive-box{margin-top:25px;padding:20px;border-radius:18px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .positive-box strong{font-size:42px;letter-spacing:-.055em;line-height:1}
+    .positive-box span{font-size:13px;color:var(--muted);max-width:370px}
+    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:stretch}
+    .flow-step{padding:22px 18px;border-radius:20px;background:var(--paper-2);border:1px solid var(--line);position:relative;min-height:150px}
+    .flow-step:not(:last-child):after{content:"→";position:absolute;right:-18px;top:50%;transform:translateY(-50%);font-size:24px;font-weight:950;color:var(--red);z-index:3}
+    .flow-step .flow-num{font-size:43px;font-weight:950;letter-spacing:-.055em;line-height:1}
+    .flow-step .flow-label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:850;margin-top:13px}
+    .flow-step .flow-note{font-size:11px;color:var(--muted);margin-top:8px}
+    .performance-grid{grid-template-columns:1fr 1fr}
+    .perf-card{padding:30px}
+    .perf-card h3{font-size:27px;margin:0 0 6px;letter-spacing:-.04em}
+    .perf-card>p{margin:0 0 22px;color:var(--muted);font-size:13px}
+    .rank-row{display:grid;grid-template-columns:38px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}
+    .rank{width:30px;height:30px;border-radius:50%;background:var(--red);color:white;display:grid;place-content:center;font-size:12px;font-weight:950}
+    .rank-name{font-size:13px;font-weight:850;line-height:1.3}
+    .rank-name small{display:block;color:var(--muted);font-weight:650;margin-top:3px}
+    .rank-metric{text-align:right;font-size:13px;font-weight:950}
+    .rank-metric small{display:block;font-size:10px;color:var(--muted);font-weight:750;margin-top:2px}
+    .statement{background:var(--red);color:white;padding:40px;border-radius:32px;display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center;box-shadow:0 22px 60px rgba(227,27,35,.2)}
+    .statement h2{font-size:clamp(38px,5vw,68px)}
+    .statement p{font-size:18px;line-height:1.45;margin:0;color:#ffe8e9}
+    .statement-number{text-align:right}
+    .statement-number strong{font-size:clamp(84px,11vw,145px);line-height:.78;letter-spacing:-.08em}
+    .statement-number span{display:block;text-transform:uppercase;letter-spacing:.13em;font-size:11px;font-weight:900;margin-top:18px}
+    .action-grid{grid-template-columns:repeat(4,1fr)}
+    .action{padding:26px 22px;min-height:235px;position:relative;overflow:hidden}
+    .action .num{font-size:58px;font-weight:950;color:rgba(227,27,35,.16);position:absolute;right:16px;top:4px;letter-spacing:-.06em}
+    .action h3{font-size:20px;margin:40px 0 10px;letter-spacing:-.03em}
+    .action p{color:var(--muted);font-size:13px;margin:0}
+    .deadline{display:inline-block;margin-top:18px;padding:7px 9px;border-radius:8px;background:var(--ink);color:white;text-transform:uppercase;letter-spacing:.08em;font-size:9px;font-weight:900}
+    .limits{grid-template-columns:1fr 1fr 1fr}
+    .limit{padding:25px}
+    .limit .icon{width:35px;height:35px;border-radius:10px;background:var(--red);color:white;display:grid;place-content:center;font-weight:950;margin-bottom:18px}
+    .limit h3{font-size:18px;margin:0 0 8px}
+    .limit p{font-size:13px;color:var(--muted);margin:0}
+    .closing{margin-bottom:0;background:var(--ink);color:white;border-radius:32px;padding:40px;display:flex;justify-content:space-between;gap:30px;align-items:center}
+    .closing h3{font-size:clamp(30px,4vw,52px);letter-spacing:-.05em;line-height:1;margin:0;max-width:760px}
+    .closing p{max-width:370px;color:#d6d0c7;margin:0}
+    footer{padding:30px 0 45px;color:var(--muted);font-size:11px}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:24px}
+    @media(max-width:1000px){
+      .kpis{grid-template-columns:repeat(3,1fr)}
+      .hero-inner{grid-template-columns:1fr .7fr}
+      .action-grid{grid-template-columns:repeat(2,1fr)}
+      .flow{grid-template-columns:repeat(3,1fr)}
+      .flow-step:nth-child(3):after{display:none}
+      .limits{grid-template-columns:1fr}
+    }
+    @media(max-width:760px){
+      .container{width:min(100% - 24px,1180px)}
+      .topbar-inner{height:62px}.period{display:none}.btn{padding:9px 12px}
+      .hero{min-height:720px}.hero-inner{grid-template-columns:1fr;padding-top:55px}.people{max-width:390px;margin:-85px auto 0;opacity:.65}.hero:before{background:linear-gradient(180deg,rgba(17,17,17,1) 0%,rgba(17,17,17,.92) 58%,rgba(17,17,17,.6) 100%)}
+      h1{font-size:55px}.hero-meta{margin-bottom:20px}.section-head{display:block}.section-desc{margin-top:16px}
+      .kpis,.platforms,.support-grid,.commercial-layout,.quality-layout,.performance-grid,.statement,.action-grid,.limits{grid-template-columns:1fr}
+      .kpis{grid-template-columns:repeat(2,1fr)}
+      .mini-grid{grid-template-columns:repeat(2,1fr)}
+      .monthly-row{grid-template-columns:62px 1fr 38px;gap:8px}
+      .quality-row{grid-template-columns:135px 1fr 38px;gap:8px}
+      .quality-label{font-size:11px}
+      .flow{grid-template-columns:1fr}
+      .flow-step:not(:last-child):after{content:"↓";right:auto;left:50%;top:auto;bottom:-23px;transform:translateX(-50%)}
+      .flow-step:nth-child(3):after{display:block}
+      .statement-number{text-align:left}.closing{display:block}.closing p{margin-top:18px}
+      .footer-inner{display:block}.footer-inner div+div{margin-top:8px}
+    }
+    @media(max-width:480px){
+      .brand strong{font-size:14px}.diamond{width:23px;height:23px}.nav-actions .btn{font-size:0}.nav-actions .btn:after{content:"PDF";font-size:11px}
+      .kpis{grid-template-columns:1fr}.kpi{min-height:135px}
+      .chart-card,.commercial-card,.platform,.quality-bars,.donut-card,.perf-card{padding:22px}
+      .donut{width:220px}.donut:after{inset:42px}
+      .positive-box{display:block}.positive-box span{display:block;margin-top:10px}
+    }
+    @media print{
+      @page{size:A4;margin:12mm}
+      body{background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .topbar{position:static;background:white}.nav-actions{display:none}
+      .hero{min-height:445px;break-after:page}.hero-inner{padding-top:45px}.people{max-width:440px}.hero-meta{margin-bottom:30px}
+      main{padding:25px 0}.container{width:100%}
+      section{break-inside:avoid;margin-bottom:35px}.card,.coffee-image{box-shadow:none}
+      .kpis{grid-template-columns:repeat(3,1fr)}
+      .statement,.closing{break-inside:avoid}
+      footer{padding-bottom:0}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <span class="diamond" aria-hidden="true"></span>
+        <span><small>Informe digital</small><strong>Café Conquistadores</strong></span>
+      </div>
+      <div class="nav-actions">
+        <span class="period">22 abril — 31 julio 2026</span>
+        <button class="btn" onclick="window.print()">Guardar / imprimir PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="eyebrow">Rendimiento de pauta y gestión comercial</div>
+        <h1>La demanda está.<br>Ahora hay que convertirla.</h1>
+        <p class="hero-lead">Informe general desde el inicio de la campaña hasta el 31/07. La pauta logró volumen, alcance y señales de intención; el principal desafío pasa por transformar cada registro en seguimiento, aprendizaje y ventas.</p>
+        <div class="hero-meta">
+          <span class="chip">Meta Ads + Google Ads</span>
+          <span class="chip">Todos los canales de la landing</span>
+          <span class="chip">Córdoba y zona de influencia</span>
+        </div>
+      </div>
+      <img class="people" src="assets/brand-people.webp" alt="Personas disfrutando café" />
+    </div>
+    <div class="hero-strip"></div>
+  </section>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <div><div class="section-kicker">Resumen ejecutivo</div><h2>El período, en seis números</h2></div>
+        <p class="section-desc">Una lectura integrada de inversión, exposición, demanda registrada y estado de la gestión comercial.</p>
+      </div>
+      <div class="grid kpis">
+        <article class="card kpi red"><div class="label">Leads en la landing</div><div class="value">270</div><div class="note">Todos los canales: pauta + orgánico.</div></article>
+        <article class="card kpi"><div class="label">Inversión total</div><div class="value">$4,87 M</div><div class="note">Meta Ads y Google Ads.</div></article>
+        <article class="card kpi"><div class="label">Impresiones</div><div class="value">966 mil</div><div class="note">Suma de registros de ambas plataformas.</div></article>
+        <article class="card kpi"><div class="label">Clics registrados</div><div class="value">15.887</div><div class="note">Clics de enlace Meta + clics Google.</div></article>
+        <article class="card kpi"><div class="label">Conversiones atribuidas</div><div class="value">162</div><div class="note">114 Meta + 48 Google; no deduplicadas.</div></article>
+        <article class="card kpi"><div class="label">Sin clasificación</div><div class="value">105</div><div class="note">38,9% de la base total.</div></article>
+      </div>
+      <div class="method-note"><strong>Clave de lectura</strong>La landing no conserva el origen de cada registro. Por eso, los 270 leads representan el total real recibido por el negocio, mientras que las 162 conversiones son atribuciones de plataforma bajo modelos propios. Ambas cifras sirven para evaluar volumen y desempeño, pero no deben reconciliarse uno a uno.</div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div><div class="section-kicker">Rendimiento publicitario</div><h2>La pauta generó demanda en dos frentes</h2></div>
+        <p class="section-desc">Meta capturó volumen a menor costo; Google concentró búsquedas de alta intención asociadas a café mayorista, proveedor y equipamiento.</p>
+      </div>
+      <div class="grid platforms">
+        <article class="card platform">
+          <div class="platform-title"><div class="platform-name">Meta Ads</div><div class="platform-badge">Lead generation</div></div>
+          <div class="mini-grid">
+            <div class="mini"><div class="n">$2,02 M</div><div class="t">Inversión en leads</div></div>
+            <div class="mini"><div class="n">114</div><div class="t">Leads atribuidos</div></div>
+            <div class="mini"><div class="n">$17.687</div><div class="t">CPL medio</div></div>
+            <div class="mini"><div class="n">440.087</div><div class="t">Impresiones</div></div>
+            <div class="mini"><div class="n">3.497</div><div class="t">Clics de enlace</div></div>
+            <div class="mini"><div class="n">2.013</div><div class="t">Visitas a landing</div></div>
+          </div>
+          <div class="insight"><b>HORECA fue el segmento más eficiente:</b> 63 leads a $15.641, un CPL 22,6% menor que Nuevos Comercios.</div>
+        </article>
+        <article class="card platform">
+          <div class="platform-title"><div class="platform-name">Google Ads</div><div class="platform-badge">Intención de búsqueda</div></div>
+          <div class="mini-grid">
+            <div class="mini"><div class="n">$2,61 M</div><div class="t">Inversión total</div></div>
+            <div class="mini"><div class="n">48</div><div class="t">Conversiones</div></div>
+            <div class="mini"><div class="n">$54.458</div><div class="t">CPA medio</div></div>
+            <div class="mini"><div class="n">234.693</div><div class="t">Impresiones</div></div>
+            <div class="mini"><div class="n">9.327</div><div class="t">Clics</div></div>
+            <div class="mini"><div class="n">4,0%</div><div class="t">CTR general</div></div>
+          </div>
+          <div class="insight"><b>44 de 48 conversiones</b> se concentraron en Equipamiento/Comodato, PMAX HORECA y Café Mayorista/Proveedor.</div>
+        </article>
+      </div>
+      <div class="grid support-grid">
+        <article class="card support"><h3>La captación tuvo apoyo de marca</h3><p>Además de las campañas de conversión, Meta sostuvo exposición y visitas al perfil para ampliar el reconocimiento de la nueva propuesta comercial.</p><div class="support-stat"><strong>93.130</strong><span>reproducciones ThruPlay del spot</span></div><div class="support-stat"><strong>2.802</strong><span>visitas atribuidas al perfil de Instagram</span></div></article>
+        <div class="coffee-image" role="img" aria-label="Café Conquistadores y propuesta de precio transparente"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div><div class="section-kicker">Seguimiento de leads</div><h2>El volumen creció; la clasificación no acompañó</h2></div>
+        <p class="section-desc">La base recibió 270 registros. Mayo y junio tuvieron un seguimiento alto, pero julio acumula un retraso que impide medir calidad y ventas.</p>
+      </div>
+      <div class="grid commercial-layout">
+        <article class="card chart-card">
+          <h3>Leads por mes y estado comercial</h3>
+          <div class="chart-sub">Cada barra representa el total mensual; el tramo rayado corresponde a registros todavía sin evaluar.</div>
+          <div class="monthly-row"><div class="month">Abril</div><div class="stack"><div class="seg" data-tip="Compró: 0" style="width:0%;background:var(--green)"></div><div class="seg" data-tip="Interés: 2" style="width:6.25%;background:var(--yellow)"></div><div class="seg" data-tip="Interés bajo: 7" style="width:21.875%;background:var(--orange)"></div><div class="seg" data-tip="No compra: 2" style="width:6.25%;background:var(--status-red)"></div><div class="seg" data-tip="No contactable: 3" style="width:9.375%;background:var(--gray)"></div><div class="seg pending" data-tip="Sin clasificación: 18" style="width:56.25%"></div></div><div class="total">32</div></div>
+          <div class="monthly-row"><div class="month">Mayo</div><div class="stack"><div class="seg" data-tip="Compró: 5" style="width:6.579%;background:var(--green)"></div><div class="seg" data-tip="Interés: 24" style="width:31.579%;background:var(--yellow)"></div><div class="seg" data-tip="Interés bajo: 29" style="width:38.158%;background:var(--orange)"></div><div class="seg" data-tip="No compra: 4" style="width:5.263%;background:var(--status-red)"></div><div class="seg" data-tip="No contactable: 12" style="width:15.789%;background:var(--gray)"></div><div class="seg pending" data-tip="Sin clasificación: 2" style="width:2.632%"></div></div><div class="total">76</div></div>
+          <div class="monthly-row"><div class="month">Junio</div><div class="stack"><div class="seg" data-tip="Compró: 0" style="width:0%;background:var(--green)"></div><div class="seg" data-tip="Interés: 34" style="width:40.964%;background:var(--yellow)"></div><div class="seg" data-tip="Interés bajo: 26" style="width:31.325%;background:var(--orange)"></div><div class="seg" data-tip="No compra: 11" style="width:13.253%;background:var(--status-red)"></div><div class="seg" data-tip="No contactable: 1" style="width:1.205%;background:var(--gray)"></div><div class="seg pending" data-tip="Sin clasificación: 11" style="width:13.253%"></div></div><div class="total">83</div></div>
+          <div class="monthly-row"><div class="month">Julio</div><div class="stack"><div class="seg" data-tip="Compró: 1" style="width:1.266%;background:var(--green)"></div><div class="seg" data-tip="Interés: 4" style="width:5.063%;background:var(--yellow)"></div><div class="seg" data-tip="Interés bajo: 0" style="width:0%;background:var(--orange)"></div><div class="seg" data-tip="No compra: 0" style="width:0%;background:var(--status-red)"></div><div class="seg" data-tip="No contactable: 0" style="width:0%;background:var(--gray)"></div><div class="seg pending" data-tip="Sin clasificación: 74" style="width:93.671%"></div></div><div class="total">79</div></div>
+          <div class="legend">
+            <span class="legend-item"><i class="dot" style="background:var(--green)"></i>Compró</span>
+            <span class="legend-item"><i class="dot" style="background:var(--yellow)"></i>Calidad + interés</span>
+            <span class="legend-item"><i class="dot" style="background:var(--orange)"></i>Interés bajo</span>
+            <span class="legend-item"><i class="dot" style="background:var(--status-red)"></i>No compra</span>
+            <span class="legend-item"><i class="dot" style="background:var(--gray)"></i>No contactable</span>
+            <span class="legend-item"><i class="dot pending"></i>Sin clasificación</span>
+          </div>
+        </article>
+        <article class="card commercial-card">
+          <div class="section-kicker" style="color:#ff777d">Cuello de botella</div>
+          <h3>La principal brecha está después del formulario</h3>
+          <div class="big-pending">105</div>
+          <div class="big-pending-label">leads sin clasificación</div>
+          <div class="red-line"></div>
+          <p>El 38,9% de la base no tiene un resultado comercial registrado. Julio concentra 74 casos, equivalentes al 70,5% de todo el pendiente.</p>
+          <p class="callout">Sin devolución del equipo comercial, la pauta pierde la señal necesaria para distinguir <em>volumen</em> de <em>valor real</em>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div><div class="section-kicker">Calidad observada</div><h2>La base clasificada sí muestra potencial</h2></div>
+        <p class="section-desc">Sobre 165 leads evaluados por el cliente, 132 conservaron algún nivel de posibilidad comercial.</p>
+      </div>
+      <div class="grid quality-layout">
+        <article class="card donut-card">
+          <div class="donut"><div class="donut-center"><strong>165</strong><span>evaluados</span></div></div>
+          <p class="donut-note">Distribución según la clasificación comercial aportada por el cliente.</p>
+        </article>
+        <article class="card quality-bars">
+          <div class="quality-row"><div class="quality-label">Compraron</div><div class="track"><div class="fill" style="width:3.64%;background:var(--green)"></div></div><div class="quality-value">6</div></div>
+          <div class="quality-row"><div class="quality-label">Calidad + interés</div><div class="track"><div class="fill" style="width:38.79%;background:var(--yellow)"></div></div><div class="quality-value">64</div></div>
+          <div class="quality-row"><div class="quality-label">Posible comprador</div><div class="track"><div class="fill" style="width:37.58%;background:var(--orange)"></div></div><div class="quality-value">62</div></div>
+          <div class="quality-row"><div class="quality-label">No va a comprar</div><div class="track"><div class="fill" style="width:10.30%;background:var(--status-red)"></div></div><div class="quality-value">17</div></div>
+          <div class="quality-row"><div class="quality-label">No contactable</div><div class="track"><div class="fill" style="width:9.70%;background:var(--gray)"></div></div><div class="quality-value">16</div></div>
+          <div class="positive-box"><strong>80%</strong><span>de los leads clasificados no fueron descartados: compraron, mostraron interés claro o quedaron como posibles compradores.</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div><div class="section-kicker">Embudo disponible</div><h2>La oportunidad existe, pero todavía no está cerrada</h2></div>
+        <p class="section-desc">El embudo refleja el mínimo confirmado. Al completar los 105 pendientes, las etapas de interés y compra podrían modificarse.</p>
+      </div>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-num">270</div><div class="flow-label">Leads recibidos</div><div class="flow-note">Todos los canales de la landing.</div></div>
+        <div class="flow-step"><div class="flow-num">165</div><div class="flow-label">Leads evaluados</div><div class="flow-note">61,1% de la base.</div></div>
+        <div class="flow-step"><div class="flow-num">132</div><div class="flow-label">Con potencial</div><div class="flow-note">Compra, interés o posibilidad.</div></div>
+        <div class="flow-step"><div class="flow-num">70</div><div class="flow-label">Interés claro + compra</div><div class="flow-note">64 interesados y 6 compradores.</div></div>
+        <div class="flow-step"><div class="flow-num">6</div><div class="flow-label">Compras confirmadas</div><div class="flow-note">Resultado mínimo informado.</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div><div class="section-kicker">Aprendizajes de performance</div><h2>Qué mensajes y búsquedas movieron resultados</h2></div>
+        <p class="section-desc">Las señales más fuertes se relacionan con precio directo, café mayorista y soluciones de equipamiento.</p>
+      </div>
+      <div class="grid performance-grid">
+        <article class="card perf-card">
+          <h3>Meta: creatividades con más leads</h3>
+          <p>Resultados agregados cuando la misma pieza se usó en más de un conjunto.</p>
+          <div class="rank-row"><div class="rank">1</div><div class="rank-name">Precio por kilo / café mayorista<small>“1 kg café $26.250 + IVA”</small></div><div class="rank-metric">33<small>leads · CPL $14.790</small></div></div>
+          <div class="rank-row"><div class="rank">2</div><div class="rank-name">Búsqueda de comodato<small>Adaptada a la alternativa de equipamiento</small></div><div class="rank-metric">22<small>leads · CPL $14.529</small></div></div>
+          <div class="rank-row"><div class="rank">3</div><div class="rank-name">Café para HORECA<small>Mensaje directo al negocio gastronómico</small></div><div class="rank-metric">18<small>leads · CPL $15.027</small></div></div>
+          <div class="rank-row"><div class="rank">4</div><div class="rank-name">Abrir una cafetería<small>Video + variantes para nuevos comercios</small></div><div class="rank-metric">14<small>leads · CPL $18.911</small></div></div>
+        </article>
+        <article class="card perf-card">
+          <h3>Google: campañas con más conversiones</h3>
+          <p>Las tres primeras concentraron el 91,7% de las conversiones de Google Ads.</p>
+          <div class="rank-row"><div class="rank">1</div><div class="rank-name">Equipamiento + alternativa comodato<small>Búsquedas de máquina, cafetera y comodato</small></div><div class="rank-metric">16<small>conv. · CPA $38.146</small></div></div>
+          <div class="rank-row"><div class="rank">2</div><div class="rank-name">PMAX HORECA<small>Cobertura multicanal sobre público gastronómico</small></div><div class="rank-metric">16<small>conv. · CPA $43.612</small></div></div>
+          <div class="rank-row"><div class="rank">3</div><div class="rank-name">Café mayorista + proveedor<small>Demanda explícita de abastecimiento B2B</small></div><div class="rank-metric">12<small>conv. · CPA $53.418</small></div></div>
+          <div class="rank-row"><div class="rank">✓</div><div class="rank-name">Término destacado<small>“Comodato máquina de café”</small></div><div class="rank-metric">4<small>conv. · CPA $9.021</small></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="statement">
+      <div><div class="section-kicker" style="color:#ffd3d5">Conclusión ejecutiva</div><h2>El problema ya no es únicamente generar leads.</h2><p>La pauta está construyendo demanda y detectando intenciones comerciales concretas. El freno principal es la falta de trazabilidad y seguimiento posterior, que impide conocer el cierre real, priorizar oportunidades y alimentar la optimización publicitaria.</p></div>
+      <div class="statement-number"><strong>39%</strong><span>de la base sigue sin respuesta comercial registrada</span></div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div><div class="section-kicker">Compromiso comercial propuesto</div><h2>Cuatro acciones para recuperar el valor generado</h2></div>
+        <p class="section-desc">El objetivo es convertir el seguimiento en un proceso medible, rápido y útil para ventas y marketing.</p>
+      </div>
+      <div class="grid action-grid">
+        <article class="card action"><div class="num">01</div><h3>Regularizar los 105 pendientes</h3><p>Asignar estado, responsable, fecha de contacto y próxima acción a cada registro acumulado.</p><span class="deadline">Prioridad inmediata</span></article>
+        <article class="card action"><div class="num">02</div><h3>Definir un SLA de contacto</h3><p>Primer intento el mismo día y secuencia mínima de seguimiento antes de clasificar un lead como no contactable.</p><span class="deadline">Proceso diario</span></article>
+        <article class="card action"><div class="num">03</div><h3>Unificar criterios</h3><p>Usar estados cerrados y consistentes: compra, interés, posible comprador, no compra y no contactable.</p><span class="deadline">Una sola fuente</span></article>
+        <article class="card action"><div class="num">04</div><h3>Devolver datos a pauta</h3><p>Revisión semanal entre Comercial y Marketing para orientar presupuesto, mensajes y audiencias hacia los leads que avanzan.</p><span class="deadline">Control semanal</span></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div><div class="section-kicker">Próxima etapa de medición</div><h2>Qué falta para medir ventas y retorno real</h2></div>
+        <p class="section-desc">La campaña puede optimizarse mejor cuando cada oportunidad queda conectada con su fuente y desenlace.</p>
+      </div>
+      <div class="grid limits">
+        <article class="card limit"><div class="icon">1</div><h3>Captura de origen</h3><p>Guardar UTM, GCLID y parámetros de Meta en campos ocultos de la landing para identificar canal, campaña y anuncio.</p></article>
+        <article class="card limit"><div class="icon">2</div><h3>Base comercial ordenada</h3><p>Implementar CRM o una hoja controlada con responsables, intentos, estado, motivo, consumo estimado y valor de compra.</p></article>
+        <article class="card limit"><div class="icon">3</div><h3>Ventas offline</h3><p>Devolver compras y valor a las plataformas para avanzar desde costo por lead hacia costo por cliente y retorno publicitario.</p></article>
+      </div>
+    </section>
+
+    <section class="closing">
+      <h3>La pauta abrió la puerta. El resultado final depende de cuánto y qué tan rápido se trabaje cada oportunidad.</h3>
+      <p>Con seguimiento completo, el próximo informe podrá demostrar no solo cuántos leads se generaron, sino qué campañas producen clientes y facturación.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner"><div>Café Conquistadores · Informe general de pauta · 22/04/2026 al 31/07/2026</div><div>Fuentes: Meta Ads, Google Ads y clasificación comercial provista por el cliente.</div></div>
+  </footer>
+</body>
+</html>
