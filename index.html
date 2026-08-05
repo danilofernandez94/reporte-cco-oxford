@@ -155,7 +155,7 @@
     .positive-box strong{font-size:42px;letter-spacing:-.055em;line-height:1}
     .positive-box span{font-size:13px;color:var(--muted);max-width:370px}
     .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:stretch}
-    .flow-step{padding:22px 18px;border-radius:20px;background:var(--paper-2);border:1px solid var(--line);position:relative;min-height:150px}
+    .flow-step{padding:22px 18px;border-radius:20px;background:var(--paper-2);border:1px solid var(--line);position:relative;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
     .flow-step:not(:last-child):after{content:"→";position:absolute;right:-18px;top:50%;transform:translateY(-50%);font-size:24px;font-weight:950;color:var(--red);z-index:3}
     .flow-step .flow-num{font-size:43px;font-weight:950;letter-spacing:-.055em;line-height:1}
     .flow-step .flow-label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:850;margin-top:13px}
@@ -208,6 +208,11 @@
       .kpis,.platforms,.support-grid,.commercial-layout,.quality-layout,.performance-grid,.statement,.action-grid,.limits{grid-template-columns:1fr}
       .kpis{grid-template-columns:repeat(2,1fr)}
       .mini-grid{grid-template-columns:repeat(2,1fr)}
+      .support{text-align:center}
+      .support p{max-width:540px;margin-left:auto;margin-right:auto}
+      .support-stat{display:grid;grid-template-columns:minmax(112px,auto) minmax(0,155px);align-items:center;justify-content:center;gap:14px;text-align:initial}
+      .support-stat strong{text-align:right}
+      .support-stat span{text-align:left;max-width:155px}
       .monthly-row{grid-template-columns:62px 1fr 38px;gap:8px}
       .quality-row{grid-template-columns:135px 1fr 38px;gap:8px}
       .quality-label{font-size:11px}
@@ -223,6 +228,8 @@
       .chart-card,.commercial-card,.platform,.quality-bars,.donut-card,.perf-card{padding:22px}
       .donut{width:220px}.donut:after{inset:42px}
       .positive-box{display:block}.positive-box span{display:block;margin-top:10px}
+      .support-stat{grid-template-columns:1fr;text-align:center;gap:7px;margin-top:26px}
+      .support-stat strong,.support-stat span{text-align:center;max-width:none}
     }
     @media print{
       @page{size:A4;margin:12mm}
@@ -282,7 +289,6 @@
         <article class="card kpi"><div class="label">Conversiones atribuidas</div><div class="value">162</div><div class="note">114 Meta + 48 Google; no deduplicadas.</div></article>
         <article class="card kpi"><div class="label">Sin clasificación</div><div class="value">105</div><div class="note">38,9% de la base total.</div></article>
       </div>
-      <div class="method-note"><strong>Clave de lectura</strong>La landing no conserva el origen de cada registro. Por eso, los 270 leads representan el total real recibido por el negocio, mientras que las 162 conversiones son atribuciones de plataforma bajo modelos propios. Ambas cifras sirven para evaluar volumen y desempeño, pero no deben reconciliarse uno a uno.</div>
     </section>
 
     <section>
@@ -413,36 +419,6 @@
           <div class="rank-row"><div class="rank">3</div><div class="rank-name">Café mayorista + proveedor<small>Demanda explícita de abastecimiento B2B</small></div><div class="rank-metric">12<small>conv. · CPA $53.418</small></div></div>
           <div class="rank-row"><div class="rank">✓</div><div class="rank-name">Término destacado<small>“Comodato máquina de café”</small></div><div class="rank-metric">4<small>conv. · CPA $9.021</small></div></div>
         </article>
-      </div>
-    </section>
-
-    <section class="statement">
-      <div><div class="section-kicker" style="color:#ffd3d5">Conclusión ejecutiva</div><h2>El problema ya no es únicamente generar leads.</h2><p>La pauta está construyendo demanda y detectando intenciones comerciales concretas. El freno principal es la falta de trazabilidad y seguimiento posterior, que impide conocer el cierre real, priorizar oportunidades y alimentar la optimización publicitaria.</p></div>
-      <div class="statement-number"><strong>39%</strong><span>de la base sigue sin respuesta comercial registrada</span></div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <div><div class="section-kicker">Compromiso comercial propuesto</div><h2>Cuatro acciones para recuperar el valor generado</h2></div>
-        <p class="section-desc">El objetivo es convertir el seguimiento en un proceso medible, rápido y útil para ventas y marketing.</p>
-      </div>
-      <div class="grid action-grid">
-        <article class="card action"><div class="num">01</div><h3>Regularizar los 105 pendientes</h3><p>Asignar estado, responsable, fecha de contacto y próxima acción a cada registro acumulado.</p><span class="deadline">Prioridad inmediata</span></article>
-        <article class="card action"><div class="num">02</div><h3>Definir un SLA de contacto</h3><p>Primer intento el mismo día y secuencia mínima de seguimiento antes de clasificar un lead como no contactable.</p><span class="deadline">Proceso diario</span></article>
-        <article class="card action"><div class="num">03</div><h3>Unificar criterios</h3><p>Usar estados cerrados y consistentes: compra, interés, posible comprador, no compra y no contactable.</p><span class="deadline">Una sola fuente</span></article>
-        <article class="card action"><div class="num">04</div><h3>Devolver datos a pauta</h3><p>Revisión semanal entre Comercial y Marketing para orientar presupuesto, mensajes y audiencias hacia los leads que avanzan.</p><span class="deadline">Control semanal</span></article>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <div><div class="section-kicker">Próxima etapa de medición</div><h2>Qué falta para medir ventas y retorno real</h2></div>
-        <p class="section-desc">La campaña puede optimizarse mejor cuando cada oportunidad queda conectada con su fuente y desenlace.</p>
-      </div>
-      <div class="grid limits">
-        <article class="card limit"><div class="icon">1</div><h3>Captura de origen</h3><p>Guardar UTM, GCLID y parámetros de Meta en campos ocultos de la landing para identificar canal, campaña y anuncio.</p></article>
-        <article class="card limit"><div class="icon">2</div><h3>Base comercial ordenada</h3><p>Implementar CRM o una hoja controlada con responsables, intentos, estado, motivo, consumo estimado y valor de compra.</p></article>
-        <article class="card limit"><div class="icon">3</div><h3>Ventas offline</h3><p>Devolver compras y valor a las plataformas para avanzar desde costo por lead hacia costo por cliente y retorno publicitario.</p></article>
       </div>
     </section>
 
