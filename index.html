@@ -46,7 +46,7 @@
     }
     .topbar-inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.03em}
-    .diamond{width:28px;height:28px;background:var(--red);transform:rotate(45deg);border-radius:3px;flex:none}
+    .brand-logo{width:48px;height:48px;object-fit:contain;flex:none;border-radius:8px;background:transparent;display:block}
     .brand small{display:block;font-weight:700;letter-spacing:.12em;font-size:10px;color:var(--muted);text-transform:uppercase;margin-bottom:1px}
     .brand strong{font-size:17px}
     .nav-actions{display:flex;align-items:center;gap:10px}
@@ -218,7 +218,7 @@
       .footer-inner{display:block}.footer-inner div+div{margin-top:8px}
     }
     @media(max-width:480px){
-      .brand strong{font-size:14px}.diamond{width:23px;height:23px}.nav-actions .btn{font-size:0}.nav-actions .btn:after{content:"PDF";font-size:11px}
+      .brand strong{font-size:14px}.brand-logo{width:40px;height:40px}.nav-actions .btn{font-size:0}.nav-actions .btn:after{content:"PDF";font-size:11px}
       .kpis{grid-template-columns:1fr}.kpi{min-height:135px}
       .chart-card,.commercial-card,.platform,.quality-bars,.donut-card,.perf-card{padding:22px}
       .donut{width:220px}.donut:after{inset:42px}
@@ -241,7 +241,7 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <div class="brand">
-        <span class="diamond" aria-hidden="true"></span>
+        <img class="brand-logo" src="assets/logo-conquistadores.png" alt="Logo de Café Conquistadores" />
         <span><small>Informe digital</small><strong>Café Conquistadores</strong></span>
       </div>
       <div class="nav-actions">
